@@ -1,0 +1,29 @@
+{
+  "name": "addlee",
+  "version": "0.0.0",
+  "description": "Addison Lee",
+  "private": true,
+  "bin": {
+    "addlee": "./bin/addlee"
+  },
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "author": {
+    "name": "Edward Knowles",
+    "email": "mail@eknowles.com",
+    "url": "https://github.com/eknowles"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eknowles/addlee"
+  },
+  "license": "MIT",
+  "bugs": "https://github.com/eknowles/addlee/issues",
+  "dependencies": {
+    "autocmdr": "~0.0.7",
+    "commander": "~2.0.0",
+    "request": "^2.73.0"
+  },
+  "devDependencies": {}
+}
