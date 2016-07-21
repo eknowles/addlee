@@ -23,7 +23,8 @@
   "dependencies": {
     "autocmdr": "~0.0.7",
     "commander": "~2.0.0",
-    "request": "^2.73.0"
+    "request": "^2.73.0",
+    "request-promise": "^4.0.2"
   },
   "devDependencies": {}
 }
