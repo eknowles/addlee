@@ -9,8 +9,7 @@ require('autocmdr/lib/completion')(program);
 require('autocmdr/lib/package')(program);
 require('autocmdr/lib/config')(program);
 
-program
-  .parse(process.argv);
+program.parse(process.argv);
 
 require('../cmds/price.js')(program);
 
