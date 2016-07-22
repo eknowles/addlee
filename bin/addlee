@@ -9,8 +9,20 @@ require('autocmdr/lib/completion')(program);
 require('autocmdr/lib/package')(program);
 require('autocmdr/lib/config')(program);
 
-program.parse(process.argv);
+program
+  .parse(process.argv);
 
 require('../cmds/price.js')(program);
 
-if (!program.args.length) program.help();
+program
+  .on('*', function(name) {
+    console.log('\''+name+'\' is not a known command. See \'addlee --help\':');
+    program.outputHelp();
+    process.exit(1);
+  });
+
+if (program.args.length < 1 ) {
+  console.log('No command specified. See \'addlee --help\':');
+  program.outputHelp();
+  process.exit(1);
+}

@@ -4,6 +4,38 @@
 A command line interface to get quotes, cancel bookings, get available services etc.
 </p>
 
+<p align="center">
+  <a href="https://npmjs.org/package/addlee">
+    <img src="https://img.shields.io/npm/v/addlee.svg?style=flat-square"
+         alt="NPM Version">
+  </a>
+
+  <a href="https://coveralls.io/r/eknowles/addlee">
+    <img src="https://img.shields.io/coveralls/eknowles/addlee.svg?style=flat-square"
+         alt="Coverage Status">
+  </a>
+
+  <a href="https://travis-ci.org/eknowles/addlee">
+    <img src="https://img.shields.io/travis/eknowles/addlee.svg?style=flat-square"
+         alt="Build Status">
+  </a>
+
+  <a href="https://npmjs.org/package/addlee">
+    <img src="http://img.shields.io/npm/dm/addlee.svg?style=flat-square"
+         alt="Downloads">
+  </a>
+
+  <a href="https://david-dm.org/eknowles/addlee.svg">
+    <img src="https://david-dm.org/eknowles/addlee.svg?style=flat-square"
+         alt="Dependency Status">
+  </a>
+
+  <a href="https://github.com/eknowles/addlee/blob/master/LICENSE">
+    <img src="https://img.shields.io/npm/l/addlee.svg?style=flat-square"
+         alt="License">
+  </a>
+</p>
+
 ```bash
 addlee --help
 

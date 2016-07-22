@@ -8,7 +8,8 @@ notifications:
 node_js:
   - '6'
 before_install:
-  - npm i -g npm@^2.0.0
+  - npm i -g npm@^3.10.0
+  - npm i -g mocha
 before_script:
   - npm prune
 after_success:
