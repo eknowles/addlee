@@ -14,15 +14,20 @@ program
 
 require('../cmds/price.js')(program);
 
-program
-  .on('*', function(name) {
-    console.log('\''+name+'\' is not a known command. See \'addlee --help\':');
-    program.outputHelp();
-    process.exit(1);
-  });
 
-if (program.args.length < 1 ) {
-  console.log('No command specified. See \'addlee --help\':');
+// Unknown commands
+var found = 0;
+program.commands.forEach(function (command) {
+  program.args.forEach(function (arg) {
+    if (command._name === arg) {
+      found = 1;
+    }
+  });
+});
+
+if (!found) {
+  console.log('\''+name+'\' is not a known command. See \'addlee --help\':');
   program.outputHelp();
   process.exit(1);
 }
+
