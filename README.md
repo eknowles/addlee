@@ -16,7 +16,7 @@ A command line interface to get quotes, cancel bookings, get available services 
   </a>
 
   <a href="https://travis-ci.org/eknowles/addlee">
-    <img src="https://img.shields.io/travis/eknowles/addlee.svg?style=flat-square"
+    <img src="https://img.shields.io/travis/eknowles/addlee/master.svg?style=flat-square"
          alt="Build Status">
   </a>
 
