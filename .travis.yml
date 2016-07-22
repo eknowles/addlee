@@ -10,6 +10,7 @@ node_js:
 before_install:
   - npm i -g npm@^3.10.0
   - npm i -g mocha
+  - npm i -g semantic-release
 before_script:
   - npm prune
 after_success:

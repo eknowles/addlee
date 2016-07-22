@@ -1,6 +1,5 @@
 {
   "name": "addlee",
-  "version": "0.0.0",
   "description": "Addison Lee CLI",
   "bin": {
     "addlee": "./bin/addlee"
@@ -29,6 +28,7 @@
     "request-promise": "^4.0.2"
   },
   "devDependencies": {
-    "mocha": "^2.5.3"
+    "mocha": "^2.5.3",
+    "semantic-release": "^4.3.5"
   }
 }
