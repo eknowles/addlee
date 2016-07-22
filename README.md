@@ -1,8 +1,8 @@
-# Addison Lee Developer CLI
+<h1 align="center">Addison Lee Developer CLI</h1>
 
-## Description
-
-A CLI for developers to play with public API's to get quotes, cancel bookings, get available services etc.
+<p align="center">
+A command line interface to get quotes, cancel bookings, get available services etc.
+</p>
 
 ```bash
 addlee --help
@@ -26,8 +26,14 @@ addlee --help
 
 To install addlee from npm, run:
 
-```
+```bash
 $ npm install -g addlee
+```
+
+Persist your MuleSoft Application API key to the config
+
+```bash
+$ addlee config apikey bf04c59b953aaad945bb10ee0eac532d:9b3344bb2ec9fb643eecac8389d2521b
 ```
 
 ## Commands
@@ -56,7 +62,32 @@ $ addlee price --help
 Here's an example using NW1 to W6
 
 ```bash
-$ addlee price NW13ER,W60TB
+$ addlee price NW13ER,TW61RR
+```
+
+Outputs
+
+```bash
+┌─────────────┬──────────────────────────────────────┐
+│ Request ID  │ 5dd019dd-8be7-4704-bbc0-4f3c99ca6d16 │
+├─────────────┼──────────────────────────────────────┤
+│ Quote ID    │ 4d702b47-107b-47ca-b767-311efc62f5c5 │
+├─────────────┼──────────────────────────────────────┤
+│ ETA         │ 15 mins                              │
+├─────────────┼──────────────────────────────────────┤
+│ Discount    │ 0 GBP                                │
+├─────────────┼──────────────────────────────────────┤
+│ VAT         │ 12.89 GBP                            │
+├─────────────┼──────────────────────────────────────┤
+│ Total Price │ 77.34 GBP                            │
+└─────────────┴──────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┬───────────────────┬────────────┬────────┐
+│ ADDRESS                                                  │ LAT               │ LONG       │ SOURCE │
+├──────────────────────────────────────────────────────────┼───────────────────┼────────────┼────────┤
+│ 7-9 WILLIAM RD, KINGS CROSS, LONDON NW1 3ER, UK          │ 51.52701649999999 │ -0.1393921 │ GOOGLE │
+├──────────────────────────────────────────────────────────┼───────────────────┼────────────┼────────┤
+│ TERMINAL 2, INNER RING E, LONGFORD, HOUNSLOW TW6 1RR, UK │ 51.46957580000001 │ -0.4496072 │ GOOGLE │
+└──────────────────────────────────────────────────────────┴───────────────────┴────────────┴────────┘
 ```
 
 To test different pricing by accounts you can change API key using the `--key <key>` argument.

@@ -43,24 +43,38 @@ module.exports = function (program) {
           apikey: API_KEY
         });
       }).then(function (response) {
-        console.log('Request ID: ', response.request_id);
-
         let head = Object.keys(response.locations[0]);
         let headers = head.map(function (head) {
-          return head.toUpperCase();
+          return head.toUpperCase()
         });
-        let table = new Table({head: headers});
+        let locationTable = new Table({ head: headers });
+        let quoteTable = new Table({});
+
         response.locations.forEach(function (location) {
           let o = [];
           head.forEach(function (i, ind) {
             o.push(location[i]);
           });
-          table.push(o);
+          locationTable.push(o);
         });
-        console.log(table.toString());
-        console.log(response.quotes[0]);
+
+        quoteTable.push(
+          { 'Request ID': response.request_id },
+          { 'Quote ID': response.quotes[0].quote_id },
+          { 'ETA': response.quotes[0].eta },
+          { 'Discount': response.quotes[0].discount + ' ' + response.quotes[0].currency },
+          { 'VAT': response.quotes[0].vat + ' ' + response.quotes[0].currency },
+          { 'Total Price': response.quotes[0].total_price + ' ' + response.quotes[0].currency }
+        );
+
+        // Log the Quote Table
+        console.log(quoteTable.toString());
+
+        // Log the Location Table
+        console.log(locationTable.toString());
+
       }).catch(function (err) {
-        console.log('There was an error');
+        console.log(err);
       });
     });
 };
