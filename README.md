@@ -54,13 +54,23 @@ addlee --help
     -V, --version  output the version number
 ```
 
-## Usage
-
-To install addlee from npm, run:
+# Install
 
 ```bash
 $ npm install -g addlee
 ```
+
+# Features
+
+- Test Sandbox and Live
+- Get a quote for a car
+- Get a list of fixed zonal prices available
+- List available services for your account
+- List available payment methods for an account
+- Get details for a booking
+- Cancel a booking
+
+## Setup
 
 Persist your MuleSoft Application API key to the config
 
