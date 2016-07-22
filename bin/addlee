@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 
-var program = require('commander');
+let program = require('commander');
 
 require('autocmdr/lib/logger')(program);
 require('autocmdr/lib/loader')(program);
@@ -9,10 +9,9 @@ require('autocmdr/lib/completion')(program);
 require('autocmdr/lib/package')(program);
 require('autocmdr/lib/config')(program);
 
-
 program
   .on('*', function(name) {
-    console.log('\''+name+'\' is not a known command. See \'addlee --help\':');
+    console.log(`'${name}' is not a known command. See 'addlee --help':`);
     program.outputHelp();
     process.exit(1);
   });
@@ -23,7 +22,7 @@ program
 require('../cmds/price.js')(program);
 
 if (!program.args.length) {
-  console.log('No command specified. See \'addlee --help\':');
+  console.log(`No command specified. See 'addlee --help':`);
   program.outputHelp();
   process.exit(1);
 }

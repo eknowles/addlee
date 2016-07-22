@@ -1,7 +1,7 @@
 'use strict';
 
-var rp = require('request-promise');
-var Table = require('cli-table');
+let rp = require('request-promise');
+let Table = require('cli-table');
 
 const SANDBOX_URL = 'https://sandbox.api.addisonlee.com/api/v2-sandbox/quickbook/quote/price';
 const LIVE_URL = 'https://api.addisonlee.com/api/v2/quickbook/quote/price';
@@ -11,6 +11,7 @@ module.exports = function (program) {
     .description('Get a price for a journey')
     .command('price [locations]')
     .option('-t, --tomorrow', 'Set pickup time for tomorrow')
+    .option('-T, --table', 'Print output as a table')
     .option('-p, --promo [promo]', 'Set Promo Code')
     .option('-k, --key <apikey>', 'Set API Key')
     .option('-S, --service <service>', 'Set service type for the quote', 'OneFourPassengers', /^(OneFourPassengers|FiveSixPassengers|Prius|VipE)$/i)
@@ -43,36 +44,39 @@ module.exports = function (program) {
           apikey: API_KEY
         });
       }).then(function (response) {
-        let head = Object.keys(response.locations[0]);
-        let headers = head.map(function (head) {
-          return head.toUpperCase()
-        });
-        let locationTable = new Table({ head: headers });
-        let quoteTable = new Table({});
-
-        response.locations.forEach(function (location) {
-          let o = [];
-          head.forEach(function (i, ind) {
-            o.push(location[i]);
+        if (pr.table) {
+          let head = Object.keys(response.locations[0]);
+          let headers = head.map(function (head) {
+            return head.toUpperCase()
           });
-          locationTable.push(o);
-        });
+          let locationTable = new Table({ head: headers });
+          let quoteTable = new Table({});
 
-        quoteTable.push(
-          { 'Request ID': response.request_id },
-          { 'Quote ID': response.quotes[0].quote_id },
-          { 'ETA': response.quotes[0].eta },
-          { 'Discount': response.quotes[0].discount + ' ' + response.quotes[0].currency },
-          { 'VAT': response.quotes[0].vat + ' ' + response.quotes[0].currency },
-          { 'Total Price': response.quotes[0].total_price + ' ' + response.quotes[0].currency }
-        );
+          response.locations.forEach(function (location) {
+            let o = [];
+            head.forEach(function (i, ind) {
+              o.push(location[i]);
+            });
+            locationTable.push(o);
+          });
 
-        // Log the Quote Table
-        console.log(quoteTable.toString());
+          quoteTable.push(
+            { 'Request ID': response.request_id },
+            { 'Quote ID': response.quotes[0].quote_id },
+            { 'ETA': response.quotes[0].eta },
+            { 'Discount': response.quotes[0].discount + ' ' + response.quotes[0].currency },
+            { 'VAT': response.quotes[0].vat + ' ' + response.quotes[0].currency },
+            { 'Total Price': response.quotes[0].total_price + ' ' + response.quotes[0].currency }
+          );
 
-        // Log the Location Table
-        console.log(locationTable.toString());
+          // Log the Quote Table
+          console.log(quoteTable.toString());
 
+          // Log the Location Table
+          console.log(locationTable.toString());
+        } else {
+         console.log(response);
+        }
       }).catch(function (err) {
         console.log(err);
       });
