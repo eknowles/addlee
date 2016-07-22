@@ -1,12 +1,13 @@
 {
   "name": "addlee",
   "version": "0.0.0",
-  "description": "Addison Lee",
-  "private": true,
+  "description": "Addison Lee CLI",
   "bin": {
     "addlee": "./bin/addlee"
   },
   "scripts": {
+    "prepublish": "semantic-release pre",
+    "postpublish": "semantic-release post",
     "test": "mocha -R spec"
   },
   "author": {
