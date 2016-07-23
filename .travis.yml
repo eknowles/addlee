@@ -18,7 +18,7 @@ before_script:
 after_script:
   - npm run coverage
 after_success:
-  - npm publish
+  - test $TRAVIS_BRANCH = "master" && npm publish
 branches:
   only:
   - master
