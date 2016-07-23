@@ -7,6 +7,8 @@
   "scripts": {
     "prepublish": "semantic-release pre",
     "postpublish": "semantic-release post",
+    "coverage": "istanbul cover ./bin/addlee --report lcovonly",
+    "postcoverage": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "test": "mocha -R spec"
   },
   "author": {
@@ -28,7 +30,9 @@
     "request-promise": "^4.0.2"
   },
   "devDependencies": {
+    "coveralls": "^2.11.11",
     "mocha": "^2.5.3",
+    "mocha-lcov-reporter": "^1.2.0",
     "semantic-release": "^4.3.5"
   }
 }

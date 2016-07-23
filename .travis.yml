@@ -7,14 +7,19 @@ notifications:
   email: false
 node_js:
   - '6'
+  - '5'
 before_install:
   - npm i -g npm@^3.10.0
   - npm i -g mocha
   - npm i -g semantic-release
+  - npm i -g instanbul
 before_script:
   - npm prune
+after_script:
+  - npm run coverage
 after_success:
   - npm publish
 branches:
-  except:
-    - "/^v\\d+\\.\\d+\\.\\d+$/"
+  only:
+  - master
+  - develop

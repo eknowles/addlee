@@ -7,7 +7,7 @@ let Table = require('cli-table');
 const SANDBOX_URL = 'https://sandbox.api.addisonlee.com/api/v2-sandbox/quickbook/quote/price';
 const LIVE_URL = 'https://api.addisonlee.com/api/v2/quickbook/quote/price';
 
-module.exports = function (program) {
+module.exports = program => {
   return program
     .description('Get a price for a journey')
     .command('price [locations]')
@@ -37,23 +37,21 @@ module.exports = function (program) {
         quote.promo_code = pr.promo;
       }
 
-      getLocations(LOC.split(','))
-        .then(function (res) {
+      lib.getLocations(LOC.split(','))
+        .then(res => {
           quote.locations = res;
           return getQuote({ url: URL, quote: quote, apikey: API_KEY });
         })
-        .then(function (response) {
+        .then(response => {
           if (pr.table) {
             let head = Object.keys(response.locations[0]);
-            let headers = head.map(function (head) {
-              return head.toUpperCase()
-            });
+            let headers = head.map(head => head.toUpperCase());
             let locationTable = new Table({ head: headers });
             let quoteTable = new Table({});
 
-            response.locations.forEach(function (location) {
+            response.locations.forEach(location => {
               let o = [];
-              head.forEach(function (i, ind) {
+              head.forEach(i => {
                 o.push(location[i]);
               });
               locationTable.push(o);
@@ -62,6 +60,7 @@ module.exports = function (program) {
             quoteTable.push(
               { 'Request ID': response.request_id },
               { 'Quote ID': response.quotes[0].quote_id },
+              { 'Service': response.quotes[0].service },
               { 'ETA': `${response.quotes[0].eta} mins` },
               { 'Discount': `${response.quotes[0].discount} ${response.quotes[0].currency}` },
               { 'VAT': `${response.quotes[0].vat} ${response.quotes[0].currency}` },
@@ -77,9 +76,7 @@ module.exports = function (program) {
             lib.log(response);
           }
         })
-        .catch(function (err) {
-          lib.log(err.error);
-        });
+        .catch(err => lib.log(err.error));
     });
 };
 
@@ -93,29 +90,5 @@ function getQuote(options) {
       'content-type': 'application/json',
       authorization: 'AL ' + options.apikey
     }
-  });
-}
-
-function getLocations(postcodes) {
-  const POSTCODE_URL = 'http://api.postcodes.io/postcodes';
-  return rp({
-    method: 'POST',
-    url: POSTCODE_URL,
-    body: { postcodes: postcodes },
-    json: true,
-    headers: {
-      'content-type': 'application/json'
-    }
-  }).then(function (response) {
-    return response.result.map(function (o) {
-      return o.result;
-    }).map(function (o) {
-      return {
-        lat: o.latitude,
-        long: o.longitude
-      }
-    });
-  }).catch(function (err) {
-    return [];
   });
 }
