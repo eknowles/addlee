@@ -15,10 +15,9 @@ before_install:
   - npm i -g istanbul
 before_script:
   - npm prune
-after_script:
-  - npm run coverage
 after_success:
-  - test $TRAVIS_BRANCH = "master" && npm publish
+  - npm run coverage
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then npm publish; fi
 branches:
   only:
   - master
