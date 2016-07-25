@@ -23,7 +23,6 @@ describe('lib', () => {
       this.timeout(10000);
       lib.getLocations(['x', 'y'])
         .then(output => {
-          console.log(output);
           assert.deepEqual(output.length, 0);
           done();
         });

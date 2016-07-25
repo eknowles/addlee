@@ -166,6 +166,14 @@ To test different pricing by accounts you can change API key using the `--key <k
 $ addlee price NW13ER,W60TB --key 91hux89ux91oijsq98s1:89djdqj1kjljlkkldoi990
 ```
 
+### Cancel a Booking
+
+Cancel a booking by Job/System ID. Options include `--sandbox` and `--key`.
+
+```bash
+$ addlee cancel J12300000000987654321
+```
+
 ## License
 
 Copyright (c) 2016 Edward Knowles
