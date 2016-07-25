@@ -78,6 +78,12 @@ Persist your MuleSoft Application API key to the config
 $ addlee config apikey bf04c59b953aaad945bb10ee0eac532d:9b3344bb2ec9fb643eecac8389d2521b
 ```
 
+Set the default price lookup locations for commands like `price`
+
+```bash
+$ addlee config defaultLocations NW13ER,W1A1AA
+```
+
 ## Commands
 
 ### Price

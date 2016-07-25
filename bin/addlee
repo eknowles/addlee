@@ -20,6 +20,7 @@ program
   .parse(process.argv);
 
 require('../cmds/price.js')(program);
+require('../cmds/cancel.js')(program);
 
 if (!program.args.length) {
   console.log(`No command specified. See 'addlee --help':`);

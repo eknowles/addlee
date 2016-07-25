@@ -20,12 +20,18 @@ module.exports = program => {
     .option('-C, --credit-card', 'Set payment method to Credit Card')
     .option('-s, --sandbox', 'Use the sandbox env of MuleSoft')
     .action(function (locations, pr) {
-      const LOC = locations || 'NW13ER,TW61EW';
+      const LOC = locations || pr.parent.config.get('defaultLocations');
       const URL = pr.sandbox ? SANDBOX_URL : LIVE_URL;
       const API_KEY = pr.apikey ? pr.apikey : pr.parent.config.get('apikey');
       let quote = {};
       quote.payment_method = 'Account';
       quote.services = [{ code: pr.service }];
+
+      if (!LOC) {
+        lib.log(`Missing locations argument. Include the argument in the query or persist a default in the config using\n\n  $ addlee config defaultLocations Nw13ER,W1A1A`);
+        program.outputHelp();
+        lib.exit(1);
+      }
 
       if (pr.cash) {
         quote.payment_method = 'Cash';
