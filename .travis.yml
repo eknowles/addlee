@@ -11,10 +11,13 @@ before_install:
   - npm i -g npm@^3.10.0
   - npm i -g mocha
   - npm i -g semantic-release
+  - npm i -g istanbul
 before_script:
   - npm prune
 after_success:
-  - npm publish
+  - npm run coverage
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then npm run release; fi
 branches:
-  except:
-    - "/^v\\d+\\.\\d+\\.\\d+$/"
+  only:
+  - master
+  - develop
