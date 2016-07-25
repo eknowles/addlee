@@ -1,0 +1,10 @@
+.idea
+*.iml
+/coverage
+/node_modules
+/test
+.editorconfig
+.addlee
+.jshintrc
+.travis.yml
+.vagrant/
